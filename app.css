@@ -2,7 +2,5 @@ img{
     width: 200px;
 }
 body{
-    background-image: url("./images/images.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+   background-color: rgb(59, 135, 217);
 }
