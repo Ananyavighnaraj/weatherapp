@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="./app.css">
+</head>
+<body >
+  <div class="row "  >
+    <div col-3></div>  
+      <div col-6>
+        <div  class="container w-50 text-center p-3 mt-5">
+            <h1 style="color:black ;">Weather Forecasts</h1>
+            <input id="cname" type="text" placeholder="City Name" class="form-control mt-3">
+            <button  onclick="search()" class=" mt-2" type="button" style="border-radius: 20px;height: 40px; width:80px ; background-color: black; color:white;">Search</button>
+        </div>
+    
+        <div class="container  text-center p-3"  id="result" >
+    
+        </div>
+      </div>
+      <div col-3></div>
+
+</div>
+
+</body>
+
+<script>
+  function search(){
+ city=cname.value
+
+ fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=5b4bee0ba241d092159faf007e166080`).then(d=>d.json().then(res=>displaydata(res)))
+
+}
+
+function displaydata(cityDetails){
+ cname=cityDetails.name
+ temp=cityDetails.main.temp
+ weathertype=cityDetails.weather[0].main
+ humidity=cityDetails.main.humidity
+ windspeed=cityDetails.wind.speed
+ 
+
+
+ htmldata=`
+ <img src="./images/9e76440e228671d77b9afc06887fab3c.png" alt="">
+ <h1>${cname}</h1>
+<p>${Math.floor(temp- 273.15)}</p>
+<p>${weathertype}</p>
+<p>${humidity}</p>
+<p>${windspeed}</p>`
+
+
+result.innerHTML=htmldata   
+}
+
+
+</script>
+
+
+</html>
+
+
